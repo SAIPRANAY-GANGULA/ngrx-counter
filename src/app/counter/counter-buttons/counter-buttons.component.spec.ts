@@ -8,9 +8,8 @@ describe('CounterButtonsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CounterButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [CounterButtonsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

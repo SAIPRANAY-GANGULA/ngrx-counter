@@ -1,5 +1,5 @@
-import { exhaustMap, map } from 'rxjs/operators';
-import { AppState } from './../store/app.state';
+import { map } from 'rxjs/operators';
+import { AppState } from '../store/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';

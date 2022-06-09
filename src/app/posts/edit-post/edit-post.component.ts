@@ -1,10 +1,10 @@
-import { updatePost } from './../state/posts.actions';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Post } from './../../models/posts.model';
-import { getPostById } from './../state/posts.selector';
-import { AppState } from './../../store/app.state';
+import { updatePost } from '../state/posts.actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Post } from '../../models/posts.model';
+import { getPostById } from '../state/posts.selector';
+import { AppState } from '../../store/app.state';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
@@ -17,6 +17,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
   post: Post;
   postForm: FormGroup;
   postSubscription: Subscription;
+
   constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
@@ -59,12 +60,12 @@ export class EditPostComponent implements OnInit, OnDestroy {
       description,
     };
 
-    //dispatch the action
+    // dispatch the action
     this.store.dispatch(updatePost({ post }));
     this.router.navigate(['posts']);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.postSubscription) {
       this.postSubscription.unsubscribe();
     }

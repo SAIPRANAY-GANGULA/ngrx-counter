@@ -1,8 +1,9 @@
-import { Post } from './../models/posts.model';
+import { Post } from '../models/posts.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +16,8 @@ export class PostsService {
       .pipe(
         map((data) => {
           const posts: Post[] = [];
-          for (let key in data) {
+          // tslint:disable-next-line:forin
+          for (const key in data) {
             posts.push({ ...data[key], id: key });
           }
           return posts;
@@ -30,7 +32,7 @@ export class PostsService {
     );
   }
 
-  updatePost(post: Post) {
+  updatePost(post: Post): Observable<unknown> {
     const postData = {
       [post.id]: { title: post.title, description: post.description },
     };
@@ -40,7 +42,7 @@ export class PostsService {
     );
   }
 
-  deletePost(id: string) {
+  deletePost(id: string): Observable<unknown> {
     return this.http.delete(
       `https://vue-completecourse.firebaseio.com/posts/${id}.json`
     );

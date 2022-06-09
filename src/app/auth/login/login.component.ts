@@ -1,6 +1,6 @@
-import { setLoadingSpinner } from './../../store/Shared/shared.actions';
-import { loginStart } from './../state/auth.actions';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { setLoadingSpinner } from '../../store/Shared/shared.actions';
+import { loginStart } from '../state/auth.actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
   }
-  onLoginSubmit() {
+
+  onLoginSubmit(): void {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.store.dispatch(setLoadingSpinner({ status: true }));

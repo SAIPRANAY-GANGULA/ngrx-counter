@@ -1,9 +1,9 @@
 import {
-  setLoadingSpinner,
   setErrorMessage,
-} from './../../store/Shared/shared.actions';
-import { AuthService } from './../../services/auth.service';
-import { exhaustMap, map, catchError, tap, mergeMap } from 'rxjs/operators';
+  setLoadingSpinner,
+} from '../../store/Shared/shared.actions';
+import { AuthService } from '../../services/auth.service';
+import { catchError, exhaustMap, map, mergeMap, tap } from 'rxjs/operators';
 import {
   autoLogin,
   autoLogout,
@@ -21,13 +21,6 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private store: Store<AppState>,
-    private router: Router
-  ) {}
-
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loginStart),
@@ -51,7 +44,6 @@ export class AuthEffects {
       })
     );
   });
-
   loginRedirect$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -66,7 +58,6 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
-
   signUp$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(signupStart),
@@ -89,7 +80,6 @@ export class AuthEffects {
       })
     );
   });
-
   autoLogin$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(autoLogin),
@@ -99,7 +89,6 @@ export class AuthEffects {
       })
     );
   });
-
   logout$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -112,4 +101,11 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
+
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private store: Store<AppState>,
+    private router: Router
+  ) {}
 }

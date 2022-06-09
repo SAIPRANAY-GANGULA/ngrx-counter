@@ -8,9 +8,8 @@ describe('CounterOutputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CounterOutputComponent ]
-    })
-    .compileComponents();
+      declarations: [CounterOutputComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

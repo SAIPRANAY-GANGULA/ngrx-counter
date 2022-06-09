@@ -1,8 +1,8 @@
-import { AppState } from './../../store/app.state';
+import { AppState } from '../../store/app.state';
 import { getPosts } from './posts.selector';
 import { Store } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Post } from './../../models/posts.model';
+import { Post } from '../../models/posts.model';
 import {
   filter,
   map,
@@ -20,25 +20,15 @@ import {
   updatePost,
   updatePostSuccess,
 } from './posts.actions';
-import { PostsService } from './../../services/posts.service';
+import { PostsService } from '../../services/posts.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import {
-  RouterNavigatedAction,
-  routerNavigationAction,
-  ROUTER_NAVIGATION,
-} from '@ngrx/router-store';
+import { ROUTER_NAVIGATION, RouterNavigatedAction } from '@ngrx/router-store';
 import { of } from 'rxjs';
 import { dummyAction } from 'src/app/auth/state/auth.actions';
 
 @Injectable()
 export class PostsEffects {
-  constructor(
-    private actions$: Actions,
-    private postsService: PostsService,
-    private store: Store<AppState>
-  ) {}
-
   loadPosts$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loadPosts),
@@ -55,7 +45,6 @@ export class PostsEffects {
       })
     );
   });
-
   addPost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(addPost),
@@ -69,7 +58,6 @@ export class PostsEffects {
       })
     );
   });
-
   updatePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(updatePost),
@@ -100,7 +88,6 @@ export class PostsEffects {
       })
     );
   });
-
   getSinglePost$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ROUTER_NAVIGATION),
@@ -124,4 +111,10 @@ export class PostsEffects {
       })
     );
   });
+
+  constructor(
+    private actions$: Actions,
+    private postsService: PostsService,
+    private store: Store<AppState>
+  ) {}
 }

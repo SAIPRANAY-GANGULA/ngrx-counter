@@ -1,6 +1,6 @@
-import { signupStart } from './../state/auth.actions';
-import { setLoadingSpinner } from './../../store/Shared/shared.actions';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { signupStart } from '../state/auth.actions';
+import { setLoadingSpinner } from '../../store/Shared/shared.actions';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSignUpSubmit() {
+  onSignUpSubmit(): void {
     if (!this.signUpForm.valid) {
       return;
     }

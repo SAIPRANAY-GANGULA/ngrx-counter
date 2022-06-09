@@ -1,5 +1,5 @@
-import { getPosts, getCount } from './../state/posts.selector';
-import { Post } from './../../models/posts.model';
+import { getCount, getPosts } from './../state/posts.selector';
+import { Post } from '../../models/posts.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -14,6 +14,7 @@ import { deletePost, loadPosts } from '../state/posts.actions';
 export class PostsListComponent implements OnInit {
   posts: Observable<Post[]>;
   count: Observable<number>;
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {

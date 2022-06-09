@@ -3,37 +3,38 @@
     <h3>Posts List ({{ count | async }})</h3>
 
     <div>
-      <a href="#" class="btn btn-primary" [routerLink]="['/posts/add']"
-        >Add Post</a
+      <a [routerLink]="['/posts/add']" class="btn btn-primary" href="#"
+      >Add Post</a
       >
     </div>
 
-    <table class="table table-striped" *ngIf="posts | async as postsData">
+    <table *ngIf="posts | async as postsData" class="table table-striped">
       <thead>
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let post of postsData">
-          <td>{{ post.id }}</td>
-          <td style="word-break: break-all">{{ post.title }}</td>
-          <td style="word-break: break-all">{{ post.description }}</td>
-          <td>
-            <a href="" class="btn btn-primary" [routerLink]="['edit', post.id]"
-              >Update </a
-            >&nbsp;
-            <button class="btn btn-danger" (click)="onDeletePost(post.id)">
-              Delete</button
-            >&nbsp;
-            <a href="" class="btn btn-info" [routerLink]="['details', post.id]"
-              >Details
-            </a>
-          </td>
-        </tr>
+      <tr *ngFor="let post of postsData">
+        <td>{{ post.id }}</td>
+        <td style="word-break: break-all">{{ post.title }}</td>
+        <td style="word-break: break-all">{{ post.description }}</td>
+        <td>
+          <a [routerLink]="['edit', post.id]" class="btn btn-primary" href=""
+          >Update </a
+          >&nbsp;
+          <button (click)="onDeletePost(post.id)" class="btn btn-danger">
+            Delete
+          </button
+          >&nbsp;
+          <a [routerLink]="['details', post.id]" class="btn btn-info" href=""
+          >Details
+          </a>
+        </td>
+      </tr>
       </tbody>
     </table>
   </div>

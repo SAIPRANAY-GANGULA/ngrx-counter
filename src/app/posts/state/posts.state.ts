@@ -1,5 +1,5 @@
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { Post } from './../../models/posts.model';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { Post } from '../../models/posts.model';
 
 export interface PostsState extends EntityState<Post> {
   count: number;

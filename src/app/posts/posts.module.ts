@@ -4,7 +4,7 @@ import { POST_STATE_NAME } from './state/posts.selector';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -25,8 +25,14 @@ const routes: Routes = [
     ],
   },
 ];
+
 @NgModule({
-  declarations: [PostsListComponent, AddPostComponent, EditPostComponent, SinglePostComponent],
+  declarations: [
+    PostsListComponent,
+    AddPostComponent,
+    EditPostComponent,
+    SinglePostComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

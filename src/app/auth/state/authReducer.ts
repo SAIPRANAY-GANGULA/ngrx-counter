@@ -1,4 +1,4 @@
-import { loginSuccess, signupSuccess, autoLogout } from './auth.actions';
+import { autoLogout, loginSuccess, signupSuccess } from './auth.actions';
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './auth.state';
 

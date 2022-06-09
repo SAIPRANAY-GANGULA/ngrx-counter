@@ -1,7 +1,7 @@
-import { User } from './../models/user.model';
+import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
-import { AuthResponseData } from './../models/AuthResponseData.model';
-import { environment } from './../../environments/environment';
+import { AuthResponseData } from '../models/AuthResponseData.model';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppState } from '../store/app.state';
@@ -13,6 +13,7 @@ import { autoLogout } from '../auth/state/auth.actions';
 })
 export class AuthService {
   timeoutInterval: any;
+
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   login(email: string, password: string): Observable<AuthResponseData> {
@@ -29,20 +30,14 @@ export class AuthService {
     );
   }
 
-  formatUser(data: AuthResponseData) {
+  formatUser(data: AuthResponseData): User {
     const expirationDate = new Date(
       new Date().getTime() + +data.expiresIn * 1000
     );
-    const user = new User(
-      data.email,
-      data.idToken,
-      data.localId,
-      expirationDate
-    );
-    return user;
+    return new User(data.email, data.idToken, data.localId, expirationDate);
   }
 
-  getErrorMessage(message: string) {
+  getErrorMessage(message: string): string {
     switch (message) {
       case 'EMAIL_NOT_FOUND':
         return 'Email Not Found';
@@ -55,24 +50,24 @@ export class AuthService {
     }
   }
 
-  setUserInLocalStorage(user: User) {
+  setUserInLocalStorage(user: User): void {
     localStorage.setItem('userData', JSON.stringify(user));
 
     this.runTimeoutInterval(user);
   }
 
-  runTimeoutInterval(user: User) {
+  runTimeoutInterval(user: User): void {
     const todaysDate = new Date().getTime();
     const expirationDate = user.expireDate.getTime();
     const timeInterval = expirationDate - todaysDate;
 
     this.timeoutInterval = setTimeout(() => {
       this.store.dispatch(autoLogout());
-      //logout functionality or get the refresh token
+      // logout functionality or get the refresh token
     }, timeInterval);
   }
 
-  getUserFromLocalStorage() {
+  getUserFromLocalStorage(): User {
     const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       const userData = JSON.parse(userDataString);
@@ -89,7 +84,7 @@ export class AuthService {
     return null;
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('userData');
     if (this.timeoutInterval) {
       clearTimeout(this.timeoutInterval);

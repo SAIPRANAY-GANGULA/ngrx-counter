@@ -1,6 +1,6 @@
-import { addPost } from './../state/posts.actions';
-import { Post } from './../../models/posts.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { addPost } from '../state/posts.actions';
+import { Post } from '../../models/posts.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
@@ -28,7 +28,7 @@ export class AddPostComponent implements OnInit {
     });
   }
 
-  showDescriptionErrors() {
+  showDescriptionErrors(): string {
     const descriptionForm = this.postForm.get('description');
     if (descriptionForm.touched && !descriptionForm.valid) {
       if (descriptionForm.errors.required) {
@@ -41,7 +41,7 @@ export class AddPostComponent implements OnInit {
     }
   }
 
-  onAddPost() {
+  onAddPost(): void {
     if (!this.postForm.valid) {
       return;
     }

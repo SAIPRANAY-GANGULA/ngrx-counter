@@ -1,7 +1,7 @@
 import { CustomSerializer } from './store/router/custom-serializer';
 import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
 import { AuthEffects } from './auth/state/auth.effects';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './store/app.state';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

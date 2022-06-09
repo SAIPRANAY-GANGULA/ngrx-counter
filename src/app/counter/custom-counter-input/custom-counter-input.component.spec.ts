@@ -8,9 +8,8 @@ describe('CustomCounterInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomCounterInputComponent ]
-    })
-    .compileComponents();
+      declarations: [CustomCounterInputComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

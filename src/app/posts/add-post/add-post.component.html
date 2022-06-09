@@ -1,11 +1,11 @@
 <div class="row my-4">
   <div class="col-md-12">
     <h3>Add Post</h3>
-    <hr />
-    <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+    <hr/>
+    <form (ngSubmit)="onAddPost()" [formGroup]="postForm">
       <div class="mb-3">
         <label>Title</label>
-        <input type="text" class="form-control" formControlName="title" />
+        <input class="form-control" formControlName="title" type="text"/>
 
         <div
           *ngIf="postForm.get('title').touched && !postForm.get('title').valid"
@@ -26,9 +26,9 @@
 
       <div class="my-3">
         <button
-          type="submit"
-          class="btn btn-primary"
           [disabled]="!postForm.valid"
+          class="btn btn-primary"
+          type="submit"
         >
           Add Post
         </button>
