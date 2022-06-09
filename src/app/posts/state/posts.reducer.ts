@@ -1,6 +1,4 @@
 import {
-  deletePost,
-  updatePost,
   loadPostsSuccess,
   addPostSuccess,
   updatePostSuccess,
@@ -9,7 +7,7 @@ import {
 import { createReducer, on } from '@ngrx/store';
 import { initialState, postsAdapter } from './posts.state';
 
-const _postsReducer = createReducer(
+export const postsReducer = createReducer(
   initialState,
   on(addPostSuccess, (state, action) => {
     return postsAdapter.addOne(action.post, {
@@ -30,7 +28,3 @@ const _postsReducer = createReducer(
     });
   })
 );
-
-export function postsReducer(state, action) {
-  return _postsReducer(state, action);
-}
